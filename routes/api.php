@@ -4,6 +4,7 @@ use App\Http\Controllers\GostController;
 use App\Http\Controllers\StoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\AuthentificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::post('register', [AuthentificationController::class, 'register']);
+Route::post('login', [AuthentificationController::class, 'login']);
 Route::get('gost', [GostController::class, 'index']);
 Route::get('gost/{gost}', [GostController::class, 'show']);
-Route::put('gost/{gost}', [GostController::class, 'update']);
-Route::delete('gost/{gost}', [GostController::class, 'destroy']);
 Route::get('sto', [StoController::class, 'index']);
 Route::get('sto/{sto}', [StoController::class, 'show']);
 
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::put('gost/{gost}', [GostController::class, 'update']);
+    Route::delete('gost/{gost}', [GostController::class, 'destroy']);
+    Route::post('logout', [AuthentificationController::class, 'logout']);
 });
