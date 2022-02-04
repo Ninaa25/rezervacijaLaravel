@@ -10,6 +10,11 @@ class Sto extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'brojMesta',
+        'tip',
+    ];
+
     public function rezervacije()
     {
         return $this->hasMany(Rezervacija::class);

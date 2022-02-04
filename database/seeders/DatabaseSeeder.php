@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\SeederGost;
+use Database\Seeders\SeederRezervacija;
+use Database\Seeders\SeederSto;
+
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $gostS = new SeederGost();
+        $rezervacijaS = new SeederRezervacija();
+        $stoS = new SeederSto();
+
+        $gostS->run();
+        $rezervacijaS->run();
+        $stoS->run();
     }
 }

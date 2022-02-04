@@ -10,6 +10,11 @@ class Gost extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ime',
+        'brojTelefona',
+    ];
+
     public function rezervacije()
     {
         return $this->hasMany(Rezervacija::class);

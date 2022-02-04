@@ -11,6 +11,13 @@ class Rezervacija extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'datumRezervacije',
+        'gost_id',
+        'tipRezervacije',
+        'sto_id',
+    ];
+
     public function gost()
     {
         return $this->belongsTo(Gost::class);
